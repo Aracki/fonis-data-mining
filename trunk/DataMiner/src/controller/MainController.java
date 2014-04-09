@@ -11,9 +11,12 @@ import javax.swing.JButton;
 import model.listener.ClassificationListener;
 import model.listener.ClusteringListener;
 import model.listener.DescriptiveStatisticListener;
+import model.listener.KolmogorovSmirnovListener;
 import model.listener.NewListener;
+import model.listener.OneSampleTTestListener;
 import model.listener.OpenListener;
 import model.listener.TextMiningListener;
+import model.listener.TwoSamplesTTestLitener;
 import model.listener.VisualizeListener;
 import model.listener.VisualizeSaveListener;
 import view.main.MainGUI;
@@ -43,10 +46,12 @@ public class MainController {
         
         //Statistics
         MainGUI.getInstance().addDescriptiveStatisticListener(new DescriptiveStatisticListener());
+        MainGUI.getInstance().addOneSampleTTest(new OneSampleTTestListener());
+        MainGUI.getInstance().addTwoSamplesTTest(new TwoSamplesTTestLitener());
+        MainGUI.getInstance().addKolmogorovSmirnov(new KolmogorovSmirnovListener());
         
         //Visualization
         MainGUI.getInstance().addVisualizeListener(new VisualizeListener());
-        MainGUI.getInstance().addSaveVisualizeListener(new VisualizeSaveListener());
         //deo za dodavanje listenrea //=======================
         
     }

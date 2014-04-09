@@ -53,9 +53,11 @@ public class MainGUI extends javax.swing.JFrame {
         mitTextMining = new javax.swing.JMenuItem();
         menuStatistics = new javax.swing.JMenu();
         mitDescriptiveStatistic = new javax.swing.JMenuItem();
+        mitOneSampleTtest = new javax.swing.JMenuItem();
+        mitTwoSamplesTtest = new javax.swing.JMenuItem();
+        mitKolmogorovSmirnov = new javax.swing.JMenuItem();
         menuVisualization = new javax.swing.JMenu();
         mitVisualize = new javax.swing.JMenuItem();
-        mitSaveVisualize = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,15 +127,21 @@ public class MainGUI extends javax.swing.JFrame {
         mitDescriptiveStatistic.setText("Descriptive Statistic");
         menuStatistics.add(mitDescriptiveStatistic);
 
+        mitOneSampleTtest.setText("One Sample T-test");
+        menuStatistics.add(mitOneSampleTtest);
+
+        mitTwoSamplesTtest.setText("Two Samples T-test");
+        menuStatistics.add(mitTwoSamplesTtest);
+
+        mitKolmogorovSmirnov.setText("Kolmogorov-Smirnov test");
+        menuStatistics.add(mitKolmogorovSmirnov);
+
         jMenuBar1.add(menuStatistics);
 
         menuVisualization.setText("Visualization");
 
         mitVisualize.setText("Visualize");
         menuVisualization.add(mitVisualize);
-
-        mitSaveVisualize.setText("Save");
-        menuVisualization.add(mitSaveVisualize);
 
         jMenuBar1.add(menuVisualization);
 
@@ -201,9 +209,7 @@ public class MainGUI extends javax.swing.JFrame {
         mitVisualize.addActionListener(listener);
     }
     
-    public void addSaveVisualizeListener (ActionListener listener) {
-        mitVisualize.addActionListener(listener);
-    }
+   
     
     public void addNewListener (ActionListener listener) {
         mitNew.addActionListener(listener);
@@ -211,6 +217,18 @@ public class MainGUI extends javax.swing.JFrame {
     
     public void addDescriptiveStatisticListener (ActionListener listener) {
         mitDescriptiveStatistic.addActionListener(listener);
+    }
+    
+    public void addOneSampleTTest (ActionListener listener) {
+        mitOneSampleTtest.addActionListener(listener);
+    }
+    
+    public void addTwoSamplesTTest (ActionListener listener) {
+        mitTwoSamplesTtest.addActionListener(listener);
+    }
+    
+    public void addKolmogorovSmirnov (ActionListener listener) {
+        mitKolmogorovSmirnov.addActionListener(listener);
     }
 
     public JPanel getPnlLeft() {
@@ -234,10 +252,12 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem mitClassification;
     private javax.swing.JMenuItem mitClustering;
     private javax.swing.JMenuItem mitDescriptiveStatistic;
+    private javax.swing.JMenuItem mitKolmogorovSmirnov;
     private javax.swing.JMenuItem mitNew;
+    private javax.swing.JMenuItem mitOneSampleTtest;
     private javax.swing.JMenuItem mitOpen;
-    private javax.swing.JMenuItem mitSaveVisualize;
     private javax.swing.JMenuItem mitTextMining;
+    private javax.swing.JMenuItem mitTwoSamplesTtest;
     private javax.swing.JMenuItem mitVisualize;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlLeft;
