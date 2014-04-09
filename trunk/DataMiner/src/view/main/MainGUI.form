@@ -21,11 +21,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuEdit">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuDataMining">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Mining"/>
@@ -55,6 +50,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Statistics"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mitDescriptiveStatistic">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Descriptive Statistic"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuVisualization">
           <Properties>

@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import model.listener.ClassificationListener;
 import model.listener.ClusteringListener;
+import model.listener.DescriptiveStatisticListener;
 import model.listener.NewListener;
 import model.listener.OpenListener;
 import model.listener.TextMiningListener;
@@ -34,7 +35,6 @@ public class MainController {
         MainGUI.getInstance().addNewListener(new NewListener());
         MainGUI.getInstance().addOpenListener(new OpenListener());
         
-        //Edit
         
         //Data Mining
         MainGUI.getInstance().addClassificationListener(new ClassificationListener());
@@ -42,6 +42,7 @@ public class MainController {
         MainGUI.getInstance().addTextMiningListener(new TextMiningListener());
         
         //Statistics
+        MainGUI.getInstance().addDescriptiveStatisticListener(new DescriptiveStatisticListener());
         
         //Visualization
         MainGUI.getInstance().addVisualizeListener(new VisualizeListener());
