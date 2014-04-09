@@ -47,20 +47,19 @@ public class MainGUI extends javax.swing.JFrame {
         menuFile = new javax.swing.JMenu();
         mitNew = new javax.swing.JMenuItem();
         mitOpen = new javax.swing.JMenuItem();
-        menuEdit = new javax.swing.JMenu();
         menuDataMining = new javax.swing.JMenu();
         mitClassification = new javax.swing.JMenuItem();
         mitClustering = new javax.swing.JMenuItem();
         mitTextMining = new javax.swing.JMenuItem();
         menuStatistics = new javax.swing.JMenu();
+        mitDescriptiveStatistic = new javax.swing.JMenuItem();
         menuVisualization = new javax.swing.JMenu();
         mitVisualize = new javax.swing.JMenuItem();
         mitSaveVisualize = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
-        pnlLeft.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        pnlLeft.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnlLeft.setMaximumSize(new java.awt.Dimension(300, 32767));
         pnlLeft.setMinimumSize(new java.awt.Dimension(200, 100));
 
@@ -77,7 +76,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         getContentPane().add(pnlLeft, java.awt.BorderLayout.LINE_START);
 
-        pnlCenter.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        pnlCenter.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnlCenter.setMaximumSize(new java.awt.Dimension(700, 32767));
 
         javax.swing.GroupLayout pnlCenterLayout = new javax.swing.GroupLayout(pnlCenter);
@@ -103,9 +102,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(menuFile);
 
-        menuEdit.setText("Edit");
-        jMenuBar1.add(menuEdit);
-
         menuDataMining.setText("Data Mining");
 
         mitClassification.setText("Classification");
@@ -125,6 +121,10 @@ public class MainGUI extends javax.swing.JFrame {
         jMenuBar1.add(menuDataMining);
 
         menuStatistics.setText("Statistics");
+
+        mitDescriptiveStatistic.setText("Descriptive Statistic");
+        menuStatistics.add(mitDescriptiveStatistic);
+
         jMenuBar1.add(menuStatistics);
 
         menuVisualization.setText("Visualization");
@@ -208,6 +208,10 @@ public class MainGUI extends javax.swing.JFrame {
     public void addNewListener (ActionListener listener) {
         mitNew.addActionListener(listener);
     }
+    
+    public void addDescriptiveStatisticListener (ActionListener listener) {
+        mitDescriptiveStatistic.addActionListener(listener);
+    }
 
     public JPanel getPnlLeft() {
         return pnlLeft;
@@ -224,12 +228,12 @@ public class MainGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuDataMining;
-    private javax.swing.JMenu menuEdit;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuStatistics;
     private javax.swing.JMenu menuVisualization;
     private javax.swing.JMenuItem mitClassification;
     private javax.swing.JMenuItem mitClustering;
+    private javax.swing.JMenuItem mitDescriptiveStatistic;
     private javax.swing.JMenuItem mitNew;
     private javax.swing.JMenuItem mitOpen;
     private javax.swing.JMenuItem mitSaveVisualize;
