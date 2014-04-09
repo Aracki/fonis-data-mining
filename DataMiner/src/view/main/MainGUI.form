@@ -56,6 +56,21 @@
                 <Property name="text" type="java.lang.String" value="Descriptive Statistic"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mitOneSampleTtest">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="One Sample T-test"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mitTwoSamplesTtest">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Two Samples T-test"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mitKolmogorovSmirnov">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Kolmogorov-Smirnov test"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuVisualization">
@@ -66,11 +81,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="mitVisualize">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualize"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mitSaveVisualize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
             </MenuItem>
           </SubComponents>

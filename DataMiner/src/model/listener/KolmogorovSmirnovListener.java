@@ -13,11 +13,12 @@ import java.awt.event.ActionListener;
  *
  * @author Stupi
  */
-public class VisualizeSaveListener implements ActionListener{
+public class KolmogorovSmirnovListener implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+    
+    
     }
     
 }
