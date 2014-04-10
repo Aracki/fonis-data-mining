@@ -23,6 +23,8 @@ public class ClassificationPnlLeft extends javax.swing.JPanel {
 
     String selectedModel;
 
+    Instances data = Data.getInstance().getInstances();
+
     /**
      * Creates new form NewJPanel
      */
@@ -92,15 +94,18 @@ public class ClassificationPnlLeft extends javax.swing.JPanel {
 
     private void jBtnPredictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPredictActionPerformed
 
-        MainGUI.getInstance().getPnlCenter().removeAll();
-        MainGUI.getInstance().getPnlCenter().add(new ClassificationPnlCenterPredict());
-        MainGUI.getInstance().getPnlCenter().validate();
-        MainGUI.getInstance().getPnlCenter().repaint();
+        if (data != null) {
+
+            MainGUI.getInstance().getPnlCenter().removeAll();
+            MainGUI.getInstance().getPnlCenter().add(new ClassificationPnlCenterPredict());
+            MainGUI.getInstance().getPnlCenter().validate();
+            MainGUI.getInstance().getPnlCenter().repaint();
+        } else {
+            JOptionPane.showMessageDialog(this, "Open .csv file");
+        }
     }//GEN-LAST:event_jBtnPredictActionPerformed
 
     private void jBtnTrainNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTrainNewActionPerformed
-
-        Instances data = Data.getInstance().getInstances();
 
         if (data != null) {
             MainGUI.getInstance().getPnlCenter().removeAll();
