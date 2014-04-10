@@ -117,7 +117,7 @@ public class ClusteringPnlLeft extends javax.swing.JPanel {
                 .addComponent(pnlAttributes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCluster)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -150,8 +150,8 @@ public class ClusteringPnlLeft extends javax.swing.JPanel {
         MainGUI.getInstance().getPnlCenter().removeAll();
         MainGUI.getInstance().getPnlCenter().add(new ClusteringPnlCenter(kMeans, eval));
         MainGUI.getInstance().getPnlCenter().setVisible(true);
-//        MainGUI.getInstance().validate();
-//        MainGUI.getInstance().repaint();
+        MainGUI.getInstance().validate();
+        MainGUI.getInstance().repaint();
         
 
     }//GEN-LAST:event_btnClusterActionPerformed
