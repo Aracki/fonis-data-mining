@@ -6,8 +6,6 @@
 
 package controller;
 
-import java.awt.BorderLayout;
-import javax.swing.JButton;
 import model.listener.ClassificationListener;
 import model.listener.ClusteringListener;
 import model.listener.DescriptiveStatisticListener;
@@ -18,7 +16,6 @@ import model.listener.OpenListener;
 import model.listener.TextMiningListener;
 import model.listener.TwoSamplesTTestLitener;
 import model.listener.VisualizeListener;
-import model.listener.VisualizeSaveListener;
 import view.main.MainGUI;
 
 /**

@@ -72,6 +72,7 @@ public class OpenListener implements ActionListener {
             }
             LoadedInstancesCentralPanel panel = new LoadedInstancesCentralPanel();
             panel.setSize(MainGUI.getInstance().getPnlCenter().getSize());
+            Data.getInstance().setLoadedInstancesCentralPanel(panel);
             MainGUI.getInstance().getPnlCenter().removeAll();
             MainGUI.getInstance().getPnlCenter().add(panel);
             MainGUI.getInstance().validate();

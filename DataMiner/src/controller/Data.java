@@ -9,6 +9,7 @@ package controller;
 import java.awt.TextField;
 import java.util.LinkedList;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import weka.core.Instances;
 
 /**
@@ -24,7 +25,7 @@ public class Data {
     private Instances instances = null;
     private String txtFilePath = null;
     private boolean classified = false;
-
+    private JPanel LoadedInstancesCentralPanel;
 
     
     
@@ -53,6 +54,14 @@ public class Data {
 
     public void setClassified(boolean classified) {
         this.classified = classified;
+    }
+
+    public JPanel getLoadedInstancesCentralPanel() {
+        return LoadedInstancesCentralPanel;
+    }
+
+    public void setLoadedInstancesCentralPanel(JPanel LoadedInstancesCentralPanel) {
+        this.LoadedInstancesCentralPanel = LoadedInstancesCentralPanel;
     }
     
     
