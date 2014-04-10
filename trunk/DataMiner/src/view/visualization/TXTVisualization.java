@@ -37,7 +37,7 @@ public class TXTVisualization {
 
                 String pom = in.readLine();
                 if (pom.contains("@attribute") && pom.contains("numeric")) {
-                    atributi.add(pom.substring(11, pom.lastIndexOf("n")));
+                    atributi.add(pom.substring(11, pom.lastIndexOf("n") - 1));
                 }
 
             }
@@ -66,11 +66,15 @@ public class TXTVisualization {
             for (int j = 0; j < br + 1; j++) {
 
                 String pom = in.readLine();
-                if (pom.contains("@attribute")){
-                    sviAtributi.add(pom.split(" ")[1]);
+                if (pom.contains("@attribute")) {
+                    if (pom.contains("numeric")) {
+                        sviAtributi.add(pom.substring(11, pom.lastIndexOf("n") - 1));
+                    } else {
+                        sviAtributi.add(pom.split(" ")[1]);
+                    }
                 }
                 if (pom.contains("@attribute") && pom.contains("numeric")) {
-                    atributi.add(pom.split(" ")[1]);
+                    atributi.add(pom.substring(11, pom.lastIndexOf("n") - 1));
                 }
                 if (!pom.contains("numeric")) {
                     brojac++;
@@ -79,7 +83,7 @@ public class TXTVisualization {
 
             }
             String s = in.readLine();
-            boje = s.substring(s.indexOf("{")+1, s.lastIndexOf("}")).split(",");
+            boje = s.substring(s.indexOf("{") + 1, s.lastIndexOf("}")).split(",");
             xy = new XYSeries[boje.length];
             for (int i = 0; i < boje.length; i++) {
 
@@ -93,9 +97,9 @@ public class TXTVisualization {
                     vrAtribut = pom2.split(",");
                     for (int i = 0; i < xy.length; i++) {
                         if (xy[i].getKey().equals(vrAtribut[vrAtribut.length - 1])) {
-                            
-                                xy[i].add(Double.parseDouble(vrAtribut[sviAtributi.indexOf(a)]), Double.parseDouble(vrAtribut[sviAtributi.indexOf(b)]));
-                            
+
+                            xy[i].add(Double.parseDouble(vrAtribut[sviAtributi.indexOf(a)]), Double.parseDouble(vrAtribut[sviAtributi.indexOf(b)]));
+
                         }
                     }
                 }
