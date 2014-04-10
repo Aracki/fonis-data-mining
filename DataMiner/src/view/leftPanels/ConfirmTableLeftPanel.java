@@ -56,7 +56,7 @@ public class ConfirmTableLeftPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        
+        System.out.println("ODRADJENO");
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 
