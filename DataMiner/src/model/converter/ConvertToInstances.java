@@ -5,6 +5,7 @@
  */
 package model.converter;
 
+import controller.TableSingleton;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
 import java.io.File;
@@ -16,9 +17,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import view.leftPanels.NewTablePnlLeft;
 
 public class ConvertToInstances {
-
 
     public Instances convertCSVToInstances(File file) {
 
@@ -33,7 +34,7 @@ public class ConvertToInstances {
         return data;
     }
 
-     public void convertXlsxToCSV(File inputFile, File outputFile) {
+    public void convertXlsxToCSV(File inputFile, File outputFile) {
         // For storing data into CSV files
         StringBuffer data = new StringBuffer();
 
@@ -90,6 +91,40 @@ public class ConvertToInstances {
 
         } catch (Exception ioe) {
             ioe.printStackTrace();
+        }
+    }
+
+    public void convertTableToCSV(File outputFile) {
+        String[][] tableData = TableSingleton.getInstance().getData();
+        String dataToWrite = "";
+        for (int i = 0; i < NewTablePnlLeft.numOfColumns; i++) {
+            String attribute = TableSingleton.getInstance().getTextFields().get(i).getText();
+            if (i < NewTablePnlLeft.numOfColumns - 1) {
+                dataToWrite = dataToWrite + attribute + ",";
+            } else {
+                dataToWrite = dataToWrite + attribute + "\r\n";
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < NewTablePnlLeft.numOfColumns; j++) {
+                    if (j < NewTablePnlLeft.numOfColumns - 1) {
+                        dataToWrite = dataToWrite + tableData[i][j] + ",";
+                    } else {
+                        dataToWrite = dataToWrite + tableData[i][j] + "\r\n";
+                    }
+                    
+                }
+            }
+        try {
+            FileOutputStream fos = new FileOutputStream(outputFile);
+            
+//            System.out.println(dataToWrite);
+
+            fos.write(dataToWrite.getBytes());
+            fos.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
         }
     }
 }

@@ -6,6 +6,12 @@
 
 package view.leftPanels;
 
+import controller.Data;
+import controller.TableSingleton;
+import java.io.File;
+import model.converter.ConvertToInstances;
+import weka.core.Instances;
+
 /**
  *
  * @author Vlada
@@ -56,7 +62,14 @@ public class ConfirmTableLeftPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        System.out.println("ODRADJENO");
+        ConvertToInstances conv = new ConvertToInstances();
+       
+        
+        File outputFile = new File("files/file1.csv");
+        conv.convertTableToCSV(outputFile);
+        Instances instance = conv.convertCSVToInstances(new File("files/file1.csv"));
+        Data.getInstance().setInstances(instance);
+        System.out.println(instance);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 

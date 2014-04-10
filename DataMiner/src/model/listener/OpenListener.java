@@ -43,11 +43,11 @@ public class OpenListener implements ActionListener {
 
             if (extension.equals("xlsx")) {
 
-                File outputFile = new File("files/proba.csv");
+                File outputFile = new File("files/proba2.csv");
                 convert.convertXlsxToCSV(chosenFile, outputFile);
             }
             if (extension.equals("xlsx")) {
-                instances = convert.convertCSVToInstances(new File("files/proba.csv"));
+                instances = convert.convertCSVToInstances(new File("files/proba2.csv"));
             } else if (extension.equals("csv")) {
                 instances = convert.convertCSVToInstances(chosenFile);
             }
