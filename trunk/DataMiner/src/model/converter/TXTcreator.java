@@ -27,7 +27,7 @@ public class TXTcreator {
 
     public void createTXTfile(String fileName) {
         try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName+".txt")));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
             
             out.println("@numOfAttributes "+getNumOfAttributes());
             out.println("@numOfInstances "+getNumOfInstances());
