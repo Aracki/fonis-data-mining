@@ -6,7 +6,6 @@
 
 package view.centerPanels.tableModels;
 
-import controller.Data;
 import controller.TableSingleton;
 import javax.swing.table.DefaultTableModel;
 import view.leftPanels.AtributeNamesLeftPanel;
