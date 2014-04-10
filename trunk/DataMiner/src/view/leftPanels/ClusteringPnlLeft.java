@@ -14,6 +14,7 @@ import javax.swing.JCheckBox;
 import model.clustering.ClusteredDataTXTCreator;
 import view.centerPanels.ClusteringPnlCenter;
 import view.main.MainGUI;
+import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.Instances;
 
@@ -23,6 +24,7 @@ import weka.core.Instances;
  */
 public class ClusteringPnlLeft extends javax.swing.JPanel {
     private LayoutManager FlowLayout;
+    
 
     /**
      * Creates new form ClusteringPnlLeft
@@ -139,11 +141,17 @@ public class ClusteringPnlLeft extends javax.swing.JPanel {
         
         
         SimpleKMeans kMeans = c.createTXTfile("methods/visualization/txtFile.txt", numOfClusters, removeFilters);
+        ClusterEvaluation eval = c.getEval();
+        
+        System.out.println("eval: " + eval);
+        
         Data.getInstance().setClassified(true);
         
-        MainGUI.getInstance().getPnlCenter().add(new ClusteringPnlCenter(kMeans));
-        MainGUI.getInstance().validate();
-        MainGUI.getInstance().repaint();
+        MainGUI.getInstance().getPnlCenter().removeAll();
+        MainGUI.getInstance().getPnlCenter().add(new ClusteringPnlCenter(kMeans, eval));
+        MainGUI.getInstance().getPnlCenter().setVisible(true);
+//        MainGUI.getInstance().validate();
+//        MainGUI.getInstance().repaint();
         
 
     }//GEN-LAST:event_btnClusterActionPerformed
