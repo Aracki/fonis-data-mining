@@ -37,7 +37,7 @@ public class TXTVisualization {
 
                 String pom = in.readLine();
                 if (pom.contains("@attribute") && pom.contains("numeric")) {
-                    atributi.add(pom.split(" ")[1]);
+                    atributi.add(pom.substring(11, pom.lastIndexOf("n")));
                 }
 
             }
@@ -79,7 +79,7 @@ public class TXTVisualization {
 
             }
             String s = in.readLine();
-            boje = s.substring(18, s.lastIndexOf("}")).split(",");
+            boje = s.substring(s.indexOf("{")+1, s.lastIndexOf("}")).split(",");
             xy = new XYSeries[boje.length];
             for (int i = 0; i < boje.length; i++) {
 
