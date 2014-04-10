@@ -12,6 +12,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import model.converter.ConvertToInstances;
+import model.converter.TXTcreator;
 import view.centerPanels.LoadedInstancesCentralPanel;
 import view.main.MainGUI;
 import weka.core.Instances;
@@ -57,6 +58,8 @@ public class OpenListener implements ActionListener {
             int lastAttributeIndex = instances.numAttributes() - 1;
             if (instances.attribute(lastAttributeIndex).isNominal()) {
                 Data.getInstance().setClassified(true);
+                TXTcreator creator = new TXTcreator(instances);
+                creator.createTXTfile("methods/visualization/txtFile.txt");
             } else {
                 Data.getInstance().setClassified(false);
             }
