@@ -16,6 +16,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import view.main.MainGUI;
+import view.centerPanels.ClassificationPnlCenterStart;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.SerializationHelper;
 
@@ -69,17 +70,17 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
 
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBtnStart = new javax.swing.JButton();
         jPanelStart = new javax.swing.JPanel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Models:");
 
-        jButton1.setText("Start");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnStart.setText("Start");
+        jBtnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtnStartActionPerformed(evt);
             }
         });
 
@@ -91,13 +92,13 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, 0, 160, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, 0, 475, Short.MAX_VALUE)
                         .addGap(211, 211, 211))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelStart, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBtnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelStart, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -108,39 +109,25 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton1)
+                .addComponent(jBtnStart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelStart, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        MainGUI.getInstance().getPnlCenter().removeAll();
-//        MainGUI.getInstance().getPnlCenter().add(new jPanelStart2());
-//        MainGUI.getInstance().getPnlCenter().validate();
-//        MainGUI.getInstance().getPnlCenter().repaint();
+    private void jBtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnStartActionPerformed
 
-        ArrayList<JLabel> listaLabela = new ArrayList<JLabel>();
-        ArrayList<JTextField> listaFildova = new ArrayList<JTextField>();
+        jPanelStart.removeAll();
+        jPanelStart.add(new ClassificationPnlCenterStart());
+        jPanelStart.validate();
+        jPanelStart.repaint();
 
-        jPanelStart.setLayout(new FlowLayout((int) LEFT_ALIGNMENT));
-
-        int numOfAt = Data.getInstance().getInstances().numAttributes();
-
-        for (int i = 0; i < numOfAt - 1; i++) {
-            String name = Data.getInstance().getInstances().attribute(i).name();
-            listaLabela.add(new JLabel(name));
-            jPanelStart.add(listaLabela.get(i));
-            listaLabela.get(i).setText(name);
-        }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnStartActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBtnStart;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel2;
     public static javax.swing.JPanel jPanelStart;
