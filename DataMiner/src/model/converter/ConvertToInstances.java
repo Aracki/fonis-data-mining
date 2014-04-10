@@ -97,17 +97,17 @@ public class ConvertToInstances {
     public void convertTableToCSV(File outputFile) {
         String[][] tableData = TableSingleton.getInstance().getData();
         String dataToWrite = "";
-        for (int i = 0; i < NewTablePnlLeft.numOfColumns; i++) {
+        for (int i = 0; i < NewTablePnlLeft.numOfAttributes; i++) {
             String attribute = TableSingleton.getInstance().getTextFields().get(i).getText();
-            if (i < NewTablePnlLeft.numOfColumns - 1) {
+            if (i < NewTablePnlLeft.numOfAttributes - 1) {
                 dataToWrite = dataToWrite + attribute + ",";
             } else {
                 dataToWrite = dataToWrite + attribute + "\r\n";
             }
         }
-        for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < NewTablePnlLeft.numOfColumns; j++) {
-                    if (j < NewTablePnlLeft.numOfColumns - 1) {
+        for (int i = 0; i < NewTablePnlLeft.numOfInstances; i++) {
+                for (int j = 0; j < NewTablePnlLeft.numOfAttributes; j++) {
+                    if (j < NewTablePnlLeft.numOfAttributes - 1) {
                         dataToWrite = dataToWrite + tableData[i][j] + ",";
                     } else {
                         dataToWrite = dataToWrite + tableData[i][j] + "\r\n";

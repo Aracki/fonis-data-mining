@@ -5,15 +5,12 @@
  */
 package view.leftPanels;
 
-import controller.Data;
 import controller.TableSingleton;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.Vector;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import view.centerPanels.NewTableCentralPanel;
 import view.main.MainGUI;
 
@@ -29,22 +26,23 @@ public class AtributeNamesLeftPanel extends javax.swing.JPanel {
     public AtributeNamesLeftPanel() {
         initComponents();
      
-        Vector cmbOptions = new Vector();
-        cmbOptions.add("numeric");
-        cmbOptions.add("nominal");
-        for (int i = 0; i < NewTablePnlLeft.numOfColumns; i++) {
-            TextField txtField = new TextField(10);
+//        Vector cmbOptions = new Vector();
+//        cmbOptions.add("numeric");
+//        cmbOptions.add("nominal");
+        this.add(new JLabel("Insert attribute names:"));
+        for (int i = 0; i < NewTablePnlLeft.numOfAttributes; i++) {
+            TextField txtField = new TextField(18);
             TableSingleton.getInstance().getTextFields().add(txtField);
-            TableSingleton.getInstance().getComboBoxes().add(new JComboBox(cmbOptions));
+//            TableSingleton.getInstance().getComboBoxes().add(new JComboBox(cmbOptions));
 
             this.add(TableSingleton.getInstance().getTextFields().get(i));
-            this.add(TableSingleton.getInstance().getComboBoxes().get(i));
+//            this.add(TableSingleton.getInstance().getComboBoxes().get(i));
 
         }
         JButton ok = new JButton("Ok");
-        JButton back = new JButton("Back");
+       
         this.add(ok);
-        this.add(back);
+        
 
         ok.addActionListener(new ActionListener() {
             @Override

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.leftPanels;
 
 import view.centerPanels.NewTableCentralPanel;
@@ -15,8 +14,9 @@ import view.main.MainGUI;
  */
 public class NewTablePnlLeft extends javax.swing.JPanel {
 
-    public static int numOfColumns;
-    
+    public static int numOfAttributes;
+    public static int numOfInstances;
+
     /**
      * Creates new form NewTablePnlLeft
      */
@@ -33,24 +33,28 @@ public class NewTablePnlLeft extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtFieldColumns = new javax.swing.JTextField();
+        lblNumAtt = new javax.swing.JLabel();
+        txtNumAtt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtNumInst = new javax.swing.JTextField();
+        lblNumInstances = new javax.swing.JLabel();
 
-        jLabel1.setText("Number of columns:");
+        lblNumAtt.setText("Number of attributes:");
 
-        txtFieldColumns.addActionListener(new java.awt.event.ActionListener() {
+        txtNumAtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldColumnsActionPerformed(evt);
+                txtNumAttActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Create table");
+        jButton1.setText("Next");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        lblNumInstances.setText("Number of instances:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,52 +63,63 @@ public class NewTablePnlLeft extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblNumAtt)
+                            .addComponent(lblNumInstances, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFieldColumns, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNumInst, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jButton1)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFieldColumns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
+                    .addComponent(lblNumAtt)
+                    .addComponent(txtNumAtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumInst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumInstances))
+                .addGap(54, 54, 54)
                 .addComponent(jButton1)
                 .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFieldColumnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldColumnsActionPerformed
+    private void txtNumAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumAttActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldColumnsActionPerformed
+    }//GEN-LAST:event_txtNumAttActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  String columns = txtFieldColumns.getText();
-        numOfColumns = Integer.parseInt(columns); 
-        
+        String attributes = txtNumAtt.getText();
+        numOfAttributes = Integer.parseInt(attributes);
+        String instances = txtNumInst.getText();
+        numOfInstances = Integer.parseInt(instances);
         MainGUI.getInstance().getPnlLeft().removeAll();
-        
+
         AtributeNamesLeftPanel panel = new AtributeNamesLeftPanel();
-            panel.setSize(MainGUI.getInstance().getPnlLeft().getSize());
-            MainGUI.getInstance().getPnlLeft().removeAll();
-            MainGUI.getInstance().getPnlLeft().add(panel);
-            MainGUI.getInstance().validate();
-            MainGUI.getInstance().repaint();
-            
-            panel.setVisible(true);
+        panel.setSize(MainGUI.getInstance().getPnlLeft().getSize());
+        MainGUI.getInstance().getPnlLeft().removeAll();
+        MainGUI.getInstance().getPnlLeft().add(panel);
+        MainGUI.getInstance().validate();
+        MainGUI.getInstance().repaint();
+
+        panel.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txtFieldColumns;
+    private javax.swing.JLabel lblNumAtt;
+    private javax.swing.JLabel lblNumInstances;
+    private javax.swing.JTextField txtNumAtt;
+    private javax.swing.JTextField txtNumInst;
     // End of variables declaration//GEN-END:variables
 }

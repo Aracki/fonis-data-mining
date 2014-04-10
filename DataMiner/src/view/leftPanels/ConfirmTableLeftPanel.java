@@ -7,7 +7,6 @@
 package view.leftPanels;
 
 import controller.Data;
-import controller.TableSingleton;
 import java.io.File;
 import model.converter.ConvertToInstances;
 import weka.core.Instances;
@@ -70,6 +69,7 @@ public class ConfirmTableLeftPanel extends javax.swing.JPanel {
         Instances instance = conv.convertCSVToInstances(new File("files/file1.csv"));
         Data.getInstance().setInstances(instance);
         System.out.println(instance);
+        outputFile.delete();
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 
