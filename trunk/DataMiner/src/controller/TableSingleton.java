@@ -7,7 +7,6 @@ package controller;
 
 import java.awt.TextField;
 import java.util.LinkedList;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -17,7 +16,7 @@ public class TableSingleton {
 
     private static TableSingleton instance = null;
     LinkedList<TextField> textFields = new LinkedList<>();
-    LinkedList<JComboBox> comboBoxes = new LinkedList<>();
+   
     String[][] data;
 
     /**
@@ -40,14 +39,6 @@ public class TableSingleton {
 
     public void setTextFields(LinkedList<TextField> textFields) {
         this.textFields = textFields;
-    }
-
-    public LinkedList<JComboBox> getComboBoxes() {
-        return comboBoxes;
-    }
-
-    public void setComboBoxes(LinkedList<JComboBox> comboBoxes) {
-        this.comboBoxes = comboBoxes;
     }
 
     public String[][] getData() {

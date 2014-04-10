@@ -8,7 +8,6 @@ package view.centerPanels.tableModels;
 
 import controller.TableSingleton;
 import javax.swing.table.DefaultTableModel;
-import view.leftPanels.AtributeNamesLeftPanel;
 import view.leftPanels.NewTablePnlLeft;
 
 /**
@@ -20,8 +19,8 @@ public class InsertDataTableModel extends DefaultTableModel{
     private Object[][] data;
 
     public InsertDataTableModel() {
-        AtributeNamesLeftPanel p = new AtributeNamesLeftPanel();
-        TableSingleton.getInstance().setData(30, TableSingleton.getInstance().getTextFields().size());
+       
+        TableSingleton.getInstance().setData(NewTablePnlLeft.numOfInstances, NewTablePnlLeft.numOfAttributes);
         
     }
 
@@ -31,12 +30,12 @@ public class InsertDataTableModel extends DefaultTableModel{
     
     @Override
     public int getColumnCount() {
-        return NewTablePnlLeft.numOfColumns;
+        return NewTablePnlLeft.numOfAttributes;
     }
 
     @Override
     public int getRowCount() {
-        return 30;
+        return NewTablePnlLeft.numOfInstances;
     }
 
     @Override
