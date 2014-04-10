@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.centerPanels;
 
 import javax.swing.JTextArea;
 import view.main.MainGUI;
+import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 
 /**
@@ -19,26 +19,23 @@ public class ClusteringPnlCenter extends javax.swing.JPanel {
     /**
      * Creates new form ClusteringPnlCenter
      */
-    public ClusteringPnlCenter(SimpleKMeans kMeans) {
+    public ClusteringPnlCenter(SimpleKMeans kMeans, ClusterEvaluation eval) {
         initComponents();
         setSize(MainGUI.getInstance().getPnlCenter().getWidth(), MainGUI.getInstance().getPnlCenter().getHeight());
-        setVisible(true);
-        
-        //treba ispisati sta da ispise
-        
-        
-        txtArea.setText("Clustering is an unsupervised machine learning task.\n" +
-        "It groups objects (instances) based on their similarity.\n" +
-        "Each instance is being added a new attribute – the cluster to which it belongs.\n" +
-        "Every object is most similar to those in it's cluster.\n" +
-        "It is a common technique for exploratory data mining and statistical data analysis.\n");
-        
-        txtArea.setText(txtArea.getText()+"Squared Error: "+ kMeans.getSquaredError());
-        
-        txtArea.setText(txtArea.getText()+"\n\n"+kMeans.globalInfo());
 
+        //treba ispisati sta da ispise
+        String text = eval.clusterResultsToString();
+
+        String [] textArray = text.split("\n");
+        for (int i = 13; i < textArray.length; i++) {
+            txtArea.setText(txtArea.getText() + textArray[i] + "\n");
+        }
         
-        
+//        txtArea.setText(eval.clusterResultsToString());
+
+        setVisible(true);
+        MainGUI.getInstance().validate();
+        MainGUI.getInstance().repaint();
     }
 
     /**
@@ -91,9 +88,7 @@ public class ClusteringPnlCenter extends javax.swing.JPanel {
         return txtArea;
     }
 
-   
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JScrollPane jScrollPane1;

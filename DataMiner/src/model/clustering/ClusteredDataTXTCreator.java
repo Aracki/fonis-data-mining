@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 
 import weka.core.Instances;
@@ -23,6 +24,8 @@ public class ClusteredDataTXTCreator {
 
     private Instances data;
 
+    private ClusterEvaluation eval;
+    
     public ClusteredDataTXTCreator(Instances data) {
         this.data = data;
     }
@@ -66,6 +69,7 @@ public class ClusteredDataTXTCreator {
             e.printStackTrace();
         }
         
+        eval = k.getEval();
         return k.getkMeansCLusterer();
     }
 
@@ -87,6 +91,12 @@ public class ClusteredDataTXTCreator {
     public int getNumOfInstances() {
         return data.numInstances();
     }
+
+    public ClusterEvaluation getEval() {
+        return eval;
+    }
+    
+    
 
 
 

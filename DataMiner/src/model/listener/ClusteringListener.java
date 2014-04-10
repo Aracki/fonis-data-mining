@@ -6,6 +6,7 @@
 
 package model.listener;
 
+import controller.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.leftPanels.ClusteringPnlLeft;
@@ -25,6 +26,7 @@ public class ClusteringListener implements ActionListener{
         MainGUI.getInstance().getPnlCenter().removeAll();
         
         MainGUI.getInstance().getPnlLeft().add(new ClusteringPnlLeft());
+        MainGUI.getInstance().getPnlCenter().add(Data.getInstance().getLoadedInstancesCentralPanel());
         
         MainGUI.getInstance().validate();
         MainGUI.getInstance().repaint();

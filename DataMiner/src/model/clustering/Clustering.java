@@ -6,6 +6,7 @@
 package model.clustering;
 
 import java.util.Enumeration;
+import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.FilteredClusterer;
 import weka.clusterers.SimpleKMeans;
 import weka.core.Instance;
@@ -20,6 +21,7 @@ import weka.filters.unsupervised.attribute.Remove;
 public class Clustering {
 
     private SimpleKMeans kMeansCLusterer;
+    private ClusterEvaluation eval;
 
     public Instances loadData(String fileName) throws Exception {
         DataSource loader = new DataSource(fileName);
@@ -61,6 +63,10 @@ public class Clustering {
 
         Enumeration<Instance> newData = data.enumerateInstances();
 
+        eval = new ClusterEvaluation();
+        eval.setClusterer(filteredClusterer);
+        eval.evaluateClusterer(data);
+
         while (newData.hasMoreElements()) {
 
             Instance i = (Instance) newData.nextElement();
@@ -75,5 +81,11 @@ public class Clustering {
     public SimpleKMeans getkMeansCLusterer() {
         return kMeansCLusterer;
     }
+
+    public ClusterEvaluation getEval() {
+        return eval;
+    }
+    
+    
 
 }
