@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.clasification.ClassificationIO;
 import view.main.MainGUI;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
@@ -57,6 +58,12 @@ public class ClassificationPnlCenterTrainNew extends javax.swing.JPanel {
         setVisible(true);
 
     }
+
+    public NaiveBayes getNb() {
+        return nb;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,12 +115,19 @@ public class ClassificationPnlCenterTrainNew extends javax.swing.JPanel {
 
     private void jBtnSaveModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaveModelActionPerformed
         try {
-            String modelName = JOptionPane.showInputDialog(this, " Enter model name: ");
+            String fileName = JOptionPane.showInputDialog(this, " Enter model name: ");
 
-            SerializationHelper.write("methods/classification/Models/" + modelName + ".model", nb);
-
-//            model.clasification.ModelFinder.writeIntoTxt(modelName);
-
+            boolean ok = ClassificationIO.updateTxtFile(fileName);
+            
+            if (!ok) {
+                JOptionPane.showMessageDialog(this, "This name already exist.\nTry with another name.");
+                return;
+            }
+            Instances instances = Data.getInstance().getInstances();
+            
+            ClassificationIO.writeInstanceObject(fileName, instances);
+            ClassificationIO.writeNaiveBayesObject(fileName, nb);
+            
             JOptionPane.showMessageDialog(this, "Successful");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);

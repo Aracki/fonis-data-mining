@@ -13,7 +13,6 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import static view.centerPanels.ClassificationPnlCenterPredict.jPanelStart;
 import view.main.MainGUI;
 import weka.core.Instances;
 
