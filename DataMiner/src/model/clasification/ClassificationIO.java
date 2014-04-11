@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
+import weka.core.pmml.Function;
 
 /**
  *
@@ -70,7 +71,7 @@ public class ClassificationIO {
                 files.add(tmp);
             }
             in.close();
-
+            
             //na kraju ubacimo u listu i fajl koji dodajemo
             files.add(fileName);
 
