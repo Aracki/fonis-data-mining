@@ -27,11 +27,12 @@ public class MeasureCentral {
     }
 
     public double geometricMean(double[] elements) {
-        double proizvod=1;
+        double proizvod=1.0;
         for(int i=0;i<elements.length;i++){
             proizvod= proizvod*elements[i];
         }
-        double geometric = Math.pow(proizvod, 1/elements.length);
+        double koren= 1.0/elements.length;
+        double geometric = Math.pow(proizvod,koren);
          return geometric;
     }
 
