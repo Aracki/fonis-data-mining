@@ -7,6 +7,7 @@ package view.centerPanels;
 
 import controller.Data;
 import static java.awt.Component.LEFT_ALIGNMENT;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static view.centerPanels.ClassificationPnlCenterPredict.jPanelStart;
 import view.main.MainGUI;
+import weka.core.Instances;
 
 /**
  *
@@ -24,31 +26,43 @@ public class ClassificationPnlCenterStart extends javax.swing.JPanel {
     /**
      * Creates new form ClassificationPnlCenterStart
      */
-    public ClassificationPnlCenterStart() {
+    public ClassificationPnlCenterStart(Instances instances, ArrayList<JTextField> fields) {
         initComponents();
-
-        setLocation(ClassificationPnlCenterPredict.jPanelStart.getLocation());
-        setSize(ClassificationPnlCenterPredict.jPanelStart.getSize());
-
-        ArrayList<JLabel> labelList = new ArrayList<JLabel>();
-        ArrayList<JTextField> textFieldList = new ArrayList<JTextField>();
-
-        int numOfAt = Data.getInstance().getInstances().numAttributes();
-
-        for (int i = 0; i < numOfAt - 1; i++) {
-            String name = Data.getInstance().getInstances().attribute(i).name();
-            labelList.add(new JLabel(name));
-            labelList.get(i).setText(name);
-
-            textFieldList.add(new JTextField());
-
-            add(labelList.get(i));
-
-            add(textFieldList.get(i));
-            textFieldList.get(i).setSize(55, 25);
+        
+        int numAttributes = instances.numAttributes();
+       
+        setLayout(new FlowLayout((int) LEFT_ALIGNMENT));
+        for (int i = 0; i < numAttributes; i++) {
+            
+            String name = instances.attribute(i).name();
+            String type;
+            if (instances.attribute(i).isNominal())
+                type = "(nominal)";
+            else
+                type = "(numeric)";
+            
+            String text = name + " " + type;
+            
+            JLabel label = new JLabel(text);
+            Dimension d1 = new Dimension(170, 20);
+            label.setPreferredSize(d1);
+            label.setAlignmentX(LEFT_ALIGNMENT);
+            add(label);
+            
+            JTextField txtField = new JTextField("");
+            Dimension d = new Dimension(50, 20);
+            txtField.setPreferredSize(d);
+            add(txtField);
+            fields.add(txtField);
         }
-
+        
+        
+        setSize(230, 250);
         setVisible(true);
+        
+        
+        
+        
     }
 
     /**
@@ -59,6 +73,9 @@ public class ClassificationPnlCenterStart extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setMaximumSize(new java.awt.Dimension(266, 193));
+        setPreferredSize(new java.awt.Dimension(225, 300));
     }// </editor-fold>//GEN-END:initComponents
 
 
