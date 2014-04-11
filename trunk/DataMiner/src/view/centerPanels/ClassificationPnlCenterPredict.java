@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import view.main.MainGUI;
 import view.centerPanels.ClassificationPnlCenterStart;
 import weka.classifiers.bayes.NaiveBayes;
+import weka.core.Instances;
 import weka.core.SerializationHelper;
 
 /**
@@ -25,12 +26,22 @@ import weka.core.SerializationHelper;
  * @author Dusan Dudukovic
  */
 public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
-
+    
+    private ArrayList<JTextField> textList;
+//    private ArrayList<JLabel> labelList;
     /**
      * Creates new form ClassificationPnlCenter
      */
     public ClassificationPnlCenterPredict() {
         initComponents();
+
+        
+        textList = new ArrayList<>();
+        Instances instances = Data.getInstance().getInstances();
+
+        ClassificationPnlCenterStart pnlStart = new ClassificationPnlCenterStart(instances, textList);
+
+        jPanelStart.add(pnlStart);
 
         setSize(MainGUI.getInstance().getPnlCenter().getWidth(), MainGUI.getInstance().getPnlCenter().getHeight());
         setVisible(true);
@@ -84,6 +95,8 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
             }
         });
 
+        jPanelStart.setPreferredSize(new java.awt.Dimension(266, 193));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,36 +105,49 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, 0, 475, Short.MAX_VALUE)
                         .addGap(211, 211, 211))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelStart, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(jBtnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnStart))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jBtnStart)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelStart, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jBtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnStartActionPerformed
 
-        jPanelStart.removeAll();
-        jPanelStart.add(new ClassificationPnlCenterStart());
-        jPanelStart.validate();
-        jPanelStart.repaint();
+//        ArrayList<JTextField> txtFieldList = new ArrayList<>();
+//        
+//        
+//        
+//        int numOfAttributes = Data.getInstance().getInstances().numAttributes();
+//        
+//        for (int i = 0; i < numOfAttributes; i++) {
+//            
+//        }
+        
+//        jPanelStart.removeAll();
+//        jPanelStart.add(new ClassificationPnlCenterStart());
+//        jPanelStart.validate();
+//        jPanelStart.repaint();
 
     }//GEN-LAST:event_jBtnStartActionPerformed
 
