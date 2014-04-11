@@ -15,7 +15,19 @@ public class SquaredError {
     
 
     public double variance(double[] elements) {
-        return 0;
+        double suma=0;
+        double suma2 = 0;
+        for(int i = 0; i<elements.length;i++){
+            
+             suma2 = elements[i]+suma;
+             
+        }
+        double arithmetic = suma2/elements.length;
+        for(int i = 0; i < elements.length; i++){
+            suma =suma + Math.pow((elements[i]-arithmetic),2);
+        }
+        double varijansa = suma/elements.length;
+        return varijansa;
     }
     
     
