@@ -5,14 +5,13 @@
  */
 package view.leftPanels;
 
-import com.sun.corba.se.spi.ior.IORFactories;
+
 import controller.Data;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.centerPanels.ClassificationPnlCenterPredict;
 import view.centerPanels.ClassificationPnlCenterTrainNew;
 import view.main.MainGUI;
+import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Instances;
 
 /**
@@ -21,10 +20,14 @@ import weka.core.Instances;
  */
 public class ClassificationPnlLeft extends javax.swing.JPanel {
 
-    String selectedModel;
+    private String selectedModel;
 
-    Instances data = Data.getInstance().getInstances();
+    private Instances data = Data.getInstance().getInstances();
 
+    private NaiveBayes naiveBayes;
+    private ClassificationPnlCenterTrainNew pnlTrainNew;
+    
+    
     /**
      * Creates new form NewJPanel
      */
@@ -95,13 +98,13 @@ public class ClassificationPnlLeft extends javax.swing.JPanel {
     private void jBtnPredictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPredictActionPerformed
 
         if (data != null) {
-
+            naiveBayes = pnlTrainNew.getNb();
             MainGUI.getInstance().getPnlCenter().removeAll();
-            MainGUI.getInstance().getPnlCenter().add(new ClassificationPnlCenterPredict());
+            MainGUI.getInstance().getPnlCenter().add(new ClassificationPnlCenterPredict(naiveBayes));
             MainGUI.getInstance().getPnlCenter().validate();
             MainGUI.getInstance().getPnlCenter().repaint();
         } else {
-            JOptionPane.showMessageDialog(this, "Open .csv file");
+            JOptionPane.showMessageDialog(this, "Open .csv or .xlsx file");
         }
     }//GEN-LAST:event_jBtnPredictActionPerformed
 
@@ -109,7 +112,8 @@ public class ClassificationPnlLeft extends javax.swing.JPanel {
 
         if (data != null) {
             MainGUI.getInstance().getPnlCenter().removeAll();
-            MainGUI.getInstance().getPnlCenter().add(new ClassificationPnlCenterTrainNew());
+            pnlTrainNew = new ClassificationPnlCenterTrainNew();
+            MainGUI.getInstance().getPnlCenter().add(pnlTrainNew);
             MainGUI.getInstance().getPnlCenter().validate();
             MainGUI.getInstance().getPnlCenter().repaint();
         } else {

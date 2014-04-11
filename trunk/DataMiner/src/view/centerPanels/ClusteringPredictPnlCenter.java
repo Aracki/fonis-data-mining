@@ -133,9 +133,13 @@ public class ClusteringPredictPnlCenter extends javax.swing.JPanel {
         test.delete();
 
         //proverava da li su dobro unete vrednosti
+        //ako nesto nije doro uneseno nekaa iskoci JoptionPane
+        //sta je lose uneseno, naziv aributa recimo
         for (int i = 0; i < fields.size(); i++) {
             String text = fields.get(i).getText().trim();
 
+            //prekace prazna pollja jer za klasterizaciju znaci da se ona ignorisu
+            //to za klasifikaciju nije slucaj
             if (!text.equals("")) {
 
                 if (test.attribute(i).isNominal()) {
@@ -167,12 +171,14 @@ public class ClusteringPredictPnlCenter extends javax.swing.JPanel {
 
         Instance instance = new Instance(numAttributes);
 
+        //ovaj remove je potreban samo zaklasterizaciju
         String remove = "";
 
         boolean hasRemove = false;
         for (int i = 0; i < fields.size(); i++) {
             String text = fields.get(i).getText().trim();
 
+            //vama ne sme da se pojavi prazan string
             if (text.equals("")) {
                 remove = remove + (i + 1) + ",";
                 hasRemove = true;
@@ -192,8 +198,11 @@ public class ClusteringPredictPnlCenter extends javax.swing.JPanel {
             remove = remove.substring(0, remove.length() - 1);
         }
 
+        //meni se InstanceS zove test a vama instances, ovako se dodaje ta jedna instanca
         test.add(instance);
-
+        //sad radite vasu evaluaciju ovo je klaserizacija ostalo
+        
+        
         Remove removeFilter = new Remove();
         removeFilter.setAttributeIndices(remove);
 
