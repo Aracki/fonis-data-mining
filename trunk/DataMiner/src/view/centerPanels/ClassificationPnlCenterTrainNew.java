@@ -112,7 +112,7 @@ public class ClassificationPnlCenterTrainNew extends javax.swing.JPanel {
 
             SerializationHelper.write("methods/classification/Models/" + modelName + ".model", nb);
 
-            model.clasification.ModelFinder.writeIntoTxt(modelName);
+//            model.clasification.ModelFinder.writeIntoTxt(modelName);
 
             JOptionPane.showMessageDialog(this, "Successful");
         } catch (Exception e) {
