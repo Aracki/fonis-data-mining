@@ -19,7 +19,7 @@ public class SquaredError {
         double suma2 = 0;
         for(int i = 0; i<elements.length;i++){
             
-             suma2 = elements[i]+suma;
+             suma2 = elements[i]+suma2;
              
         }
         double arithmetic = suma2/elements.length;
