@@ -6,6 +6,8 @@
 
 package model.statistic;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Stupi
@@ -13,23 +15,57 @@ package model.statistic;
 public class MeasureCentral {
 
     public double arithmeticMean(double[] elements) {
-        return 0;
+        double suma = 0;
+        for(int i = 0; i<elements.length;i++){
+            
+             suma = elements[i]+suma;
+             
+        }
+        double arithmetic = suma/elements.length;
+       
+        return arithmetic;
     }
 
     public double geometricMean(double[] elements) {
-         return 0;
+        double proizvod=1;
+        for(int i=0;i<elements.length;i++){
+            proizvod= proizvod*elements[i];
+        }
+        double geometric = Math.pow(proizvod, 1/elements.length);
+         return geometric;
     }
 
     public double harmonicMean(double[] elements) {
-         return 0;
+        double a=0;
+        for(int i = 0; i<elements.length; i++){
+            a= a+ 1/elements[i];
+        }
+       double harmonic = elements.length/a;
+         return harmonic;
     }
 
     public double mode(double[] elements) {
-         return 0;
+         double maxValue=0;
+         int maxCount=0;
+
+    for (int i = 0; i < elements.length; ++i) {
+        int count = 0;
+        for (int j = 0; j < elements.length; ++j) {
+            if (elements[j] == elements[i]) ++count;
+        }
+        if (count > maxCount) {
+            maxCount = count;
+            maxValue = elements[i];
+        }
+    }
+
+         return maxValue;
     }
 
     public double median(double[] elements) {
-         return 0;
+        Arrays.sort(elements);
+        
+         return elements[elements.length/2];
     }
     
 }
