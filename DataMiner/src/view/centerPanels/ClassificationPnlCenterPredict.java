@@ -17,11 +17,14 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import model.clasification.ClassificationIO;
 import view.main.MainGUI;
 import view.centerPanels.ClassificationPnlCenterStart;
+import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
+import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
 
@@ -57,7 +60,7 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
 
         pnlAttributes.setVisible(true);
         btnStart.setEnabled(false);
-        
+
         ArrayList<String> files = ClassificationIO.readFileNames();
         if (files.size() == 0) {
             filesExist = false;
@@ -230,7 +233,7 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
 
         int numAttributes = instances.numAttributes();
         textFields = new ArrayList<>();
-        
+
         System.out.println("USAO U AE" + numAttributes);
         pnlAttributes.setLayout(new FlowLayout((int) LEFT_ALIGNMENT));
         Dimension dim = new Dimension(250, 180);
@@ -262,32 +265,104 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
             textFields.add(txtField);
         }
         pnlAttributes.setVisible(true);
-        
+
         btnStart.setEnabled(true);
-        
+
         validate();
         repaint();
 
-        
 
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
+
         //imate vec objekat instances i objekat naiveBayes u ovoj klasi
         //treba da izvucete ono sto je uetu u text fieldove preko liste i da napravite
         //objekat Instance (nema "s"). kad naravite objekat Instance samo ga dodate
         //na instances.add(  )..
-        
         //onda koristite takav Instances i naiveBayes za evaluaciju i u textArea
         //ispisujete kojoj klasi pripada.. Sad ne trba matrica konfuzije potrebno
         //je da ispisete string kojoj klasi pripada
-        
         //pogledajte klasu ClusterinPnlCenterPredict tu je odradjeno 90% onog sto se i ovde trazi
         
+        instances.delete();
+        
+        for (int i = 0; i < textFields.size(); i++) {
+            String text = textFields.get(i).getText().trim();
+
+            //prekace prazna pollja jer za klasterizaciju znaci da se ona ignorisu
+            //to za klasifikaciju nije slucaj
+            if (!text.equals("")) {
+
+                if (instances.attribute(i).isNominal()) {
+                    boolean correct = false;
+                    for (int j = 0; j < instances.attribute(i).numValues(); j++) {
+                        if (text.equals(instances.attribute(i).value(j))) {
+                            correct = true;
+                        }
+                    }
+                    if (!correct) {
+                        JOptionPane.showMessageDialog(this, "Incorrect format for attribute " + instances.attribute(i).name());
+                        break;
+                    }
+                }
+
+                if (instances.attribute(i).isNumeric()) {
+                    try {
+                        double value = Double.parseDouble(text);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Incorrect format for attribute " + instances.attribute(i).name());
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        int numAttributes = instances.numAttributes();
+
+        Instance instance = new Instance(numAttributes);
+
+        for (int i = 0; i < textFields.size(); i++) {
+            String text = textFields.get(i).getText().trim();
+
+            try {
+                double value = Double.parseDouble(text);
+                instance.setValue(i, value);
+
+            } catch (Exception e) {
+                instance.setValue(i, text);
+                if(i == numAttributes - 1)
+                    instance.setValue(i, instances.attribute(i).value(1));
+            }
+            
+            
+        instance.setValue(textFields.size(), textFields.get(textFields.size() - 1).getText());
+//        instances.delete();
+//        instance.setValue((numAttributes - 1), instances.attribute(numAttributes - 1).value(0) );
+        instances.add(instance);
+        
+        System.out.println(instances);
+        
+            try {
+                
+//                instances.setClassIndex(instances.numAttributes() - 1);
+                
+                Evaluation eval = new Evaluation(instances);
+                naiveBayes.buildClassifier(instances);
+                          
+                eval.evaluateModel(naiveBayes, instances);
+                
+                textArea.setText(eval.toMatrixString());
+                
+            } catch (Exception ex) {
+                System.out.println("Greska: " + ex);
+            }
         
         
-        
+        }
+
+
     }//GEN-LAST:event_btnStartActionPerformed
 
 
