@@ -19,7 +19,7 @@ import weka.core.converters.ConverterUtils.DataSource;
  */
 public class klasifikacijaIstanca {
 
-    private static String fileName = "C:/Users/Dusan Dudukovic/Documents/NetBeansProjects/trunk/test.arff";
+    private static String fileName = "C:/Users/Dusan Dudukovic/Documents/test.arff";
 
 	public static void main(String[] args) throws Exception {
 
