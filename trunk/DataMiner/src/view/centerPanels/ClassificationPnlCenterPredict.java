@@ -238,7 +238,7 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
         pnlAttributes.setLayout(new FlowLayout((int) LEFT_ALIGNMENT));
         Dimension dim = new Dimension(250, 180);
         pnlAttributes.setPreferredSize(dim);
-        for (int i = 0; i < numAttributes; i++) {
+        for (int i = 0; i < numAttributes-1; i++) {
 
             String name = instances.attribute(i).name();
             String type;
@@ -285,7 +285,7 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
         //je da ispisete string kojoj klasi pripada
         //pogledajte klasu ClusterinPnlCenterPredict tu je odradjeno 90% onog sto se i ovde trazi
         
-        instances.delete();
+//        instances.delete();
         
         for (int i = 0; i < textFields.size(); i++) {
             String text = textFields.get(i).getText().trim();
@@ -332,25 +332,24 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
 
             } catch (Exception e) {
                 instance.setValue(i, text);
-                if(i == numAttributes - 1)
-                    instance.setValue(i, instances.attribute(i).value(1));
             }
             
-            
-        instance.setValue(textFields.size(), textFields.get(textFields.size() - 1).getText());
+        
+        instance.setValue(textFields.size(), instances.attribute(textFields.size()).value(0));
 //        instances.delete();
 //        instance.setValue((numAttributes - 1), instances.attribute(numAttributes - 1).value(0) );
-        instances.add(instance);
         
-        System.out.println(instances);
+        
+        instances.add(instance);    
+
         
             try {
                 
 //                instances.setClassIndex(instances.numAttributes() - 1);
                 
                 Evaluation eval = new Evaluation(instances);
-                naiveBayes.buildClassifier(instances);
-                          
+            
+                         
                 eval.evaluateModel(naiveBayes, instances);
                 
                 textArea.setText(eval.toMatrixString());
