@@ -24,6 +24,7 @@ import view.main.MainGUI;
 import view.centerPanels.ClassificationPnlCenterStart;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
+import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
@@ -222,10 +223,14 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
 
         if (predictOnCurrent == true) {
-            instances = Data.getInstance().getInstances();
+            
+            instances = new Instances(Data.getInstance().getInstances());
+            instances.delete();
         } else { //predictOnCurrent == false, znaci ucitavamo
             String fileName = cmbFiles.getSelectedItem().toString();
 
+            
+            
             instances = ClassificationIO.readInstances(fileName);
             naiveBayes = ClassificationIO.readNaiveBayes(fileName);
 
@@ -234,11 +239,10 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
         int numAttributes = instances.numAttributes();
         textFields = new ArrayList<>();
 
-        System.out.println("USAO U AE" + numAttributes);
         pnlAttributes.setLayout(new FlowLayout((int) LEFT_ALIGNMENT));
         Dimension dim = new Dimension(250, 180);
         pnlAttributes.setPreferredSize(dim);
-        for (int i = 0; i < numAttributes-1; i++) {
+        for (int i = 0; i < numAttributes - 1; i++) {
 
             String name = instances.attribute(i).name();
             String type;
@@ -284,9 +288,7 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
         //ispisujete kojoj klasi pripada.. Sad ne trba matrica konfuzije potrebno
         //je da ispisete string kojoj klasi pripada
         //pogledajte klasu ClusterinPnlCenterPredict tu je odradjeno 90% onog sto se i ovde trazi
-        
 //        instances.delete();
-        
         for (int i = 0; i < textFields.size(); i++) {
             String text = textFields.get(i).getText().trim();
 
@@ -333,35 +335,60 @@ public class ClassificationPnlCenterPredict extends javax.swing.JPanel {
             } catch (Exception e) {
                 instance.setValue(i, text);
             }
-            
+        }
+       
+        String value = instances.attribute(numAttributes-1).value(0);
+        Attribute  Att = instances.attribute(numAttributes-1);
         
-        instance.setValue(textFields.size(), instances.attribute(textFields.size()).value(0));
+        instance.setValue(Att, value);
 //        instances.delete();
 //        instance.setValue((numAttributes - 1), instances.attribute(numAttributes - 1).value(0) );
-        
-        
-        instances.add(instance);    
 
+        instances.add(instance);
+
+        double [][] matrix = null;
         
-            try {
-                
+        System.out.println(instances);
+        System.out.println(naiveBayes);
+        
+        try {
+
 //                instances.setClassIndex(instances.numAttributes() - 1);
-                
-                Evaluation eval = new Evaluation(instances);
-            
-                         
-                eval.evaluateModel(naiveBayes, instances);
-                
-                textArea.setText(eval.toMatrixString());
-                
-            } catch (Exception ex) {
-                System.out.println("Greska: " + ex);
-            }
-        
-        
+            Evaluation eval = new Evaluation(instances);
+
+            eval.evaluateModel(naiveBayes, instances);
+
+            textArea.setText(eval.toMatrixString());
+            matrix = eval.confusionMatrix();
+
+        } catch (Exception ex) {
+            System.out.println("Greska: " + ex);
         }
 
-
+        double [] array = new double[matrix.length];
+        
+        for (int i = 0; i < array.length; i++) {
+            
+            double sum = 0;
+            for (int j = 0; j < array.length; j++) {
+                
+                sum = sum + matrix[j][i];
+                
+            }
+            array[i] = sum;
+            
+        }
+        
+        String className = null;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 1) {
+                className = instances.attribute(numAttributes-1).value(i);
+            }
+        }
+        
+        textArea.setText("This instance belongs to class: \n\n== "+className+" ==");
+        
+        instances.delete();
     }//GEN-LAST:event_btnStartActionPerformed
 
 

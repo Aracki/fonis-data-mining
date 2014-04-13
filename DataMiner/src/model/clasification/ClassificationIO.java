@@ -7,12 +7,15 @@ package model.clasification;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import weka.classifiers.Classifier;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
@@ -37,7 +40,7 @@ public class ClassificationIO {
                     + fileName + Instances.SERIALIZED_OBJ_FILE_EXTENSION, instances);
         } catch (Exception e) {
         }
-        
+
     }
 
     public static void writeNaiveBayesObject(String fileName, NaiveBayes naiveBayes) {
@@ -50,13 +53,11 @@ public class ClassificationIO {
 
     //metoda vraca boolean jer proverava u isto vreme da li postoji vec takav naziv
     public static boolean updateTxtFile(String fileName) {
+        ArrayList<String> files = new ArrayList<>();
+        String path = "methods/classification/files.txt";
 
         try {
 
-            ArrayList<String> files = new ArrayList<>();
-
-            String path = "methods\\classification\\files.txt";
-            
             BufferedReader in = new BufferedReader(new FileReader(path));
 
             //ucitavamo sve fajlove koji postoje u files.txt, svaki red upisujemo u listu
@@ -71,10 +72,14 @@ public class ClassificationIO {
                 files.add(tmp);
             }
             in.close();
-            
-            //na kraju ubacimo u listu i fajl koji dodajemo
-            files.add(fileName);
 
+        } catch (Exception e) {
+        }
+
+        //na kraju ubacimo u listu i fajl koji dodajemo
+        files.add(fileName);
+
+        try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path)));
 
             //sad u isti fajl upisujemo sve pdoatke, svaki put kad se napravi ovaj out objekat
@@ -83,7 +88,7 @@ public class ClassificationIO {
                 out.println(files.get(i));
             }
             out.close();
-            
+
         } catch (Exception e) {
         }
 
@@ -101,8 +106,10 @@ public class ClassificationIO {
         Instances instances = null;
         try {
             instances = (Instances) SerializationHelper.read(path);
+
         } catch (Exception ex) {
-            Logger.getLogger(ClassificationIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClassificationIO.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return instances;
@@ -110,12 +117,20 @@ public class ClassificationIO {
     }
 
     public static NaiveBayes readNaiveBayes(String fileName) {
-        String path = "methods/classification/models" + fileName + ".model";
+        String path = "methods/classification/models/" + fileName + ".model";
 
         NaiveBayes nb = null;
         try {
-            nb = (NaiveBayes) SerializationHelper.read(path);
+
+            ObjectInputStream ois = new ObjectInputStream(
+                    new FileInputStream(path));
+            nb = (NaiveBayes) (Classifier) ois.readObject();
+            ois.close();
+
+//            nb = (NaiveBayes) SerializationHelper.read(path);
         } catch (Exception e) {
+            System.out.println("NIJE UCITAO NAIVE BAYES");
+            e.printStackTrace();
         }
 
         return nb;
@@ -143,7 +158,7 @@ public class ClassificationIO {
         }
 
         return files;
-        
+
     }
 
 }

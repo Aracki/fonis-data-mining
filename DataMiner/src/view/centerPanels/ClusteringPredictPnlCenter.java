@@ -231,7 +231,8 @@ public class ClusteringPredictPnlCenter extends javax.swing.JPanel {
         
         textAreaResult.setText("This instance belongs to \ncluster number:  "+cluster+".\n\n"+
                 "Take a look on visualization \nfor better feeleing about \nthis instance");
-
+        
+        test.delete();
 
     }//GEN-LAST:event_btnStartActionPerformed
 
