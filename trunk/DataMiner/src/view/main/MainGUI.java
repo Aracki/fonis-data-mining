@@ -7,7 +7,6 @@
 package view.main;
 
 import java.awt.event.ActionListener;
-import javax.crypto.Mac;
 import javax.swing.JPanel;
 
 /**

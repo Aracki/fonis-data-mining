@@ -37,6 +37,9 @@ public class TwoSamplesTTestLitener implements ActionListener {
 
         panelLeft.setVisible(true);
         panelCenter.setVisible(true);
+        
+        MainGUI.getInstance().validate();
+        MainGUI.getInstance().repaint();
     }
 
 }
