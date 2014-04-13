@@ -6,8 +6,11 @@
 
 package model.listener;
 
+import controller.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.leftPanels.KolmogorovSmirnovPnlLeft;
+import view.main.MainGUI;
 
 /**
  *
@@ -18,6 +21,18 @@ public class KolmogorovSmirnovListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
     
+        KolmogorovSmirnovPnlLeft pnlLeft = new KolmogorovSmirnovPnlLeft();
+        
+        MainGUI.getInstance().getPnlLeft().removeAll();
+        MainGUI.getInstance().getPnlCenter().removeAll();
+        
+        MainGUI.getInstance().getPnlLeft().add(pnlLeft);
+        MainGUI.getInstance().getPnlCenter().add(Data.getInstance().getLoadedInstancesCentralPanel());
+        
+        pnlLeft.setVisible(true);
+        
+        MainGUI.getInstance().validate();
+        MainGUI.getInstance().repaint();
     
     }
     
