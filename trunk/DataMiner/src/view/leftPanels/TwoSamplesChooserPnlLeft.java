@@ -8,6 +8,8 @@ package view.leftPanels;
 import controller.Data;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import jsc.independentsamples.TwoSampleTtest;
+import jsc.tests.H1;
 import weka.core.Instances;
 
 /**
@@ -168,6 +170,14 @@ public class TwoSamplesChooserPnlLeft extends javax.swing.JPanel {
         }
 
         //TODO ovde ide pozivanje metoda za statisticku obradu
+        TwoSampleTtest t = new TwoSampleTtest(elementsFirstAttribute, elementsSecondAttribute ,H1.NOT_EQUAL, false, 0.95);
+        
+            double up = t.getUpperLimit();
+            double dw = t.getLowerLimit();
+            double st = t.getStatistic();
+            
+            if (st >= dw && st <= up)  jTextArea1.setText("We accept H0");
+		else jTextArea1.setText("We reject H0");
     }//GEN-LAST:event_btnStartActionPerformed
 
 
