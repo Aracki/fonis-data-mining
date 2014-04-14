@@ -13,7 +13,6 @@ import model.listener.KolmogorovSmirnovListener;
 import model.listener.NewListener;
 import model.listener.OneSampleTTestListener;
 import model.listener.OpenListener;
-import model.listener.TextMiningListener;
 import model.listener.TwoSamplesTTestLitener;
 import model.listener.VisualizeListener;
 import view.main.MainGUI;
@@ -39,7 +38,7 @@ public class MainController {
         //Data Mining
         MainGUI.getInstance().addClassificationListener(new ClassificationListener());
         MainGUI.getInstance().addClusteringListener(new ClusteringListener());
-        MainGUI.getInstance().addTextMiningListener(new TextMiningListener());
+       
         
         //Statistics
         MainGUI.getInstance().addDescriptiveStatisticListener(new DescriptiveStatisticListener());

@@ -50,7 +50,6 @@ public class MainGUI extends javax.swing.JFrame {
         menuDataMining = new javax.swing.JMenu();
         mitClassification = new javax.swing.JMenuItem();
         mitClustering = new javax.swing.JMenuItem();
-        mitTextMining = new javax.swing.JMenuItem();
         menuStatistics = new javax.swing.JMenu();
         mitDescriptiveStatistic = new javax.swing.JMenuItem();
         mitOneSampleTtest = new javax.swing.JMenuItem();
@@ -116,9 +115,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         mitClustering.setText("Clustering");
         menuDataMining.add(mitClustering);
-
-        mitTextMining.setText("Text Mining");
-        menuDataMining.add(mitTextMining);
 
         jMenuBar1.add(menuDataMining);
 
@@ -201,9 +197,6 @@ public class MainGUI extends javax.swing.JFrame {
         mitClustering.addActionListener(listener);
     }
     
-    public void addTextMiningListener (ActionListener listener) {
-        mitTextMining.addActionListener(listener);
-    }
     
     public void addVisualizeListener (ActionListener listener) {
         mitVisualize.addActionListener(listener);
@@ -256,7 +249,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem mitNew;
     private javax.swing.JMenuItem mitOneSampleTtest;
     private javax.swing.JMenuItem mitOpen;
-    private javax.swing.JMenuItem mitTextMining;
     private javax.swing.JMenuItem mitTwoSamplesTtest;
     private javax.swing.JMenuItem mitVisualize;
     private javax.swing.JPanel pnlCenter;
