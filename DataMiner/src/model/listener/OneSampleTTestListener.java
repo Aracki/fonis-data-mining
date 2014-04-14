@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model.listener;
 
 import controller.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import view.leftPanels.OneSamplePnlLeft;
 import view.main.MainGUI;
 
@@ -16,25 +16,29 @@ import view.main.MainGUI;
  *
  * @author Stupi
  */
-public class OneSampleTTestListener implements ActionListener{
+public class OneSampleTTestListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+
+        if (Data.getInstance().getInstances() == null) {
+            JOptionPane.showMessageDialog(null, "You have to open/create table first!");
+            return;
+        }
+
         OneSamplePnlLeft pnlLeft = new OneSamplePnlLeft();
-        
+
         MainGUI.getInstance().getPnlLeft().removeAll();
         MainGUI.getInstance().getPnlCenter().removeAll();
-        
+
         MainGUI.getInstance().getPnlLeft().add(pnlLeft);
         MainGUI.getInstance().getPnlCenter().add(Data.getInstance().getLoadedInstancesCentralPanel());
-        
+
         pnlLeft.setVisible(true);
-        
+
         MainGUI.getInstance().validate();
         MainGUI.getInstance().repaint();
-        
-        
+
     }
-    
+
 }
