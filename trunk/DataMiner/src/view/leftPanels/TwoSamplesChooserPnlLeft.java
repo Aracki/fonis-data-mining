@@ -148,6 +148,11 @@ public class TwoSamplesChooserPnlLeft extends javax.swing.JPanel {
 
         String attName1 = cmbAttribute1.getSelectedItem().toString();
         String attName2 = cmbAttribute2.getSelectedItem().toString();
+        
+        if (attName1.equals(attName2)) {
+            JOptionPane.showMessageDialog(null, "You have to choose different attributes.");
+            return;
+        }
 
         int index1 = 0;
         int index2 = 0;

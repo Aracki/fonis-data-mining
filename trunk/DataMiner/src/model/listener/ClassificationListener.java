@@ -5,13 +5,12 @@
  */
 package model.listener;
 
+import controller.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
-import view.centerPanels.ClassificationPnlCenterPredict;
+import javax.swing.JOptionPane;
 import view.leftPanels.ClassificationPnlLeft;
 import view.main.MainGUI;
-import static view.main.MainGUI.getInstance;
 
 /**
  *
@@ -22,6 +21,10 @@ public class ClassificationListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
 
+        if (Data.getInstance().getInstances() == null) {
+            JOptionPane.showMessageDialog(null, "You have to open/create table first!");
+            return;
+        }
         MainGUI.getInstance().getPnlLeft().removeAll();
 //        MainGUI.getInstance().getPnlCenter().removeAll();
         MainGUI.getInstance().getPnlLeft().add(new ClassificationPnlLeft());

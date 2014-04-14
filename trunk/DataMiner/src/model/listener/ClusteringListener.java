@@ -9,6 +9,7 @@ package model.listener;
 import controller.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import view.leftPanels.ClusteringPnlLeft;
 import view.main.MainGUI;
 
@@ -21,7 +22,10 @@ public class ClusteringListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-        
+        if (Data.getInstance().getInstances() == null) {
+            JOptionPane.showMessageDialog(null, "You have to open/create table first!");
+            return;
+        }
         MainGUI.getInstance().getPnlLeft().removeAll();
         MainGUI.getInstance().getPnlCenter().removeAll();
         

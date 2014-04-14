@@ -25,7 +25,7 @@ public class DescriptiveStatisticListener implements ActionListener{
         
         Instances instances = Data.getInstance().getInstances();
         if (instances == null) {
-            JOptionPane.showMessageDialog(null, "Table is not loaded.");
+            JOptionPane.showMessageDialog(null, "You have to open/create table first!");
             return;
         }
         
