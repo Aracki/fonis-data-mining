@@ -39,11 +39,6 @@
                 <Property name="text" type="java.lang.String" value="Clustering"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mitTextMining">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Text Mining"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuStatistics">
