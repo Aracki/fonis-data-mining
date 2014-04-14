@@ -51,7 +51,7 @@ public class OpenListener implements ActionListener {
             } else if (extension.equals("csv")) {
                 instances = convert.convertCSVToInstances(chosenFile);
             }
-            System.out.println(instances);
+            
             Data.getInstance().setInstances(instances);
 
             //proverava da li je klasifikovano i podesava to u klasi Data
@@ -64,12 +64,7 @@ public class OpenListener implements ActionListener {
                 Data.getInstance().setClassified(false);
             }
 
-            for (int i = 0; i < instances.numInstances(); i++) {
-                for (int j = 0; j < instances.numAttributes(); j++) {
-                    System.out.print(instances.instance(i).value(j) + " ");
-                }
-                System.out.println();
-            }
+            
             LoadedInstancesCentralPanel panel = new LoadedInstancesCentralPanel();
             panel.setSize(MainGUI.getInstance().getPnlCenter().getSize());
             Data.getInstance().setLoadedInstancesCentralPanel(panel);

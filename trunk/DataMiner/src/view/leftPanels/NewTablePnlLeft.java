@@ -5,6 +5,7 @@
  */
 package view.leftPanels;
 
+import javax.swing.JOptionPane;
 import view.centerPanels.NewTableCentralPanel;
 import view.main.MainGUI;
 
@@ -98,13 +99,21 @@ public class NewTablePnlLeft extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNumAttActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String attributes = txtNumAtt.getText();
+        
+        try {
+            String attributes = txtNumAtt.getText();
         numOfAttributes = Integer.parseInt(attributes);
         String instances = txtNumInst.getText();
         numOfInstances = Integer.parseInt(instances);
+        } catch (Exception e) {           
+            JOptionPane.showMessageDialog(null, "You must enter numeric values!");
+            return;
+        }
+        
+        
         MainGUI.getInstance().getPnlLeft().removeAll();
 
-        AtributeNamesLeftPanel panel = new AtributeNamesLeftPanel();
+        AtributeNamesPnlLeft panel = new AtributeNamesPnlLeft();
         panel.setSize(MainGUI.getInstance().getPnlLeft().getSize());
         MainGUI.getInstance().getPnlLeft().removeAll();
         MainGUI.getInstance().getPnlLeft().add(panel);
