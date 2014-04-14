@@ -11,43 +11,49 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import view.centerPanels.NewTableCentralPanel;
+import static view.leftPanels.NewTablePnlLeft.numOfAttributes;
+import static view.leftPanels.NewTablePnlLeft.numOfInstances;
 import view.main.MainGUI;
 
 /**
  *
  * @author Vlada
  */
-public class AtributeNamesLeftPanel extends javax.swing.JPanel {
+public class AtributeNamesPnlLeft extends javax.swing.JPanel {
 
     /**
      * Creates new form AtributeNamesLeftPanel
      */
-    public AtributeNamesLeftPanel() {
+    public AtributeNamesPnlLeft() {
         initComponents();
-     
-//        Vector cmbOptions = new Vector();
-//        cmbOptions.add("numeric");
-//        cmbOptions.add("nominal");
+
         this.add(new JLabel("Insert attribute names:"));
         for (int i = 0; i < NewTablePnlLeft.numOfAttributes; i++) {
             TextField txtField = new TextField(18);
             TableSingleton.getInstance().getTextFields().add(txtField);
-//            TableSingleton.getInstance().getComboBoxes().add(new JComboBox(cmbOptions));
 
             this.add(TableSingleton.getInstance().getTextFields().get(i));
-//            this.add(TableSingleton.getInstance().getComboBoxes().get(i));
 
         }
         JButton ok = new JButton("Ok");
-       
+
         this.add(ok);
-        
 
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ConfirmTableLeftPanel panelLeft = new ConfirmTableLeftPanel();
+
+                for (int i = 0; i < NewTablePnlLeft.numOfAttributes; i++) {
+                    if (TableSingleton.getInstance().getTextFields().get(i).getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "You must enter all attribute names!");
+                        return;
+                    }
+
+                }
+
+                ConfirmTablepnlLeft panelLeft = new ConfirmTablepnlLeft();
                 panelLeft.setSize(MainGUI.getInstance().getPnlLeft().getSize());
                 MainGUI.getInstance().getPnlLeft().removeAll();
                 MainGUI.getInstance().getPnlLeft().add(panelLeft);
@@ -56,7 +62,7 @@ public class AtributeNamesLeftPanel extends javax.swing.JPanel {
                 panelCenter.setSize(MainGUI.getInstance().getPnlCenter().getSize());
                 MainGUI.getInstance().getPnlCenter().removeAll();
                 MainGUI.getInstance().getPnlCenter().add(panelCenter);
-                
+
                 MainGUI.getInstance().validate();
                 MainGUI.getInstance().repaint();
 
@@ -66,8 +72,6 @@ public class AtributeNamesLeftPanel extends javax.swing.JPanel {
         });
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

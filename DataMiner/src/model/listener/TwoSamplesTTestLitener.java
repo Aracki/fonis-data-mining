@@ -28,7 +28,7 @@ public class TwoSamplesTTestLitener implements ActionListener {
         MainGUI.getInstance().getPnlLeft().add(panelLeft);
 
         JPanel panelCenter = Data.getInstance().getLoadedInstancesCentralPanel();
-//                panelCenter.setSize(MainGUI.getInstance().getPnlCenter().getSize());
+
         MainGUI.getInstance().getPnlCenter().removeAll();
         MainGUI.getInstance().getPnlCenter().add(panelCenter);
 

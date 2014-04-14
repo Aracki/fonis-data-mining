@@ -28,6 +28,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
