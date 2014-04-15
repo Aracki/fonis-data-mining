@@ -34,6 +34,7 @@ public class DescriptiveStatisticListener implements ActionListener{
         
         //da se doda za centralni panel tabela
         MainGUI.getInstance().getPnlLeft().add(new DescriptivePnlLeft(instances));
+        MainGUI.getInstance().getPnlCenter().add(Data.getInstance().getLoadedInstancesCentralPanel());
         
         MainGUI.getInstance().validate();
         MainGUI.getInstance().repaint();
