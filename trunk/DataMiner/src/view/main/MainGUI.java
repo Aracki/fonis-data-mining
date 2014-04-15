@@ -36,7 +36,7 @@ public class MainGUI extends javax.swing.JFrame {
         setTitle("Data Miner");
         BufferedImage icon = null;
         try {
-            File file = new File("C:/Users/Stupi/Desktop/ikonica.PNG");
+            File file = new File("ikonica.PNG");
             icon = ImageIO.read(file);
         } catch (Exception e) {
 
