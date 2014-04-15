@@ -26,9 +26,9 @@ public class ClassificationListener implements ActionListener {
             return;
         }
         MainGUI.getInstance().getPnlLeft().removeAll();
-//        MainGUI.getInstance().getPnlCenter().removeAll();
+        MainGUI.getInstance().getPnlCenter().removeAll();
         MainGUI.getInstance().getPnlLeft().add(new ClassificationPnlLeft());
-//        MainGUI.getInstance().getPnlCenter().add(new ClassificationPnlCenter());
+        MainGUI.getInstance().getPnlCenter().add(Data.getInstance().getLoadedInstancesCentralPanel());
 
         MainGUI.getInstance().getPnlLeft().validate();
         MainGUI.getInstance().getPnlLeft().repaint();
