@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.main;
 
+import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -16,13 +19,14 @@ import javax.swing.JPanel;
 public class MainGUI extends javax.swing.JFrame {
 
     private static MainGUI instance = null;
-    
-    public static MainGUI getInstance () {
-        if (instance == null)
+
+    public static MainGUI getInstance() {
+        if (instance == null) {
             instance = new MainGUI();
+        }
         return instance;
     }
-    
+
     /**
      * Creates new form MainGUI
      */
@@ -30,6 +34,14 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Data Miner");
+        BufferedImage icon = null;
+        try {
+            File file = new File("C:/Users/Stupi/Desktop/ikonica.PNG");
+            icon = ImageIO.read(file);
+        } catch (Exception e) {
+
+        }
+        setIconImage(icon);
         setVisible(true);
     }
 
@@ -185,43 +197,40 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void addOpenListener (ActionListener listener) {
+
+    public void addOpenListener(ActionListener listener) {
         mitOpen.addActionListener(listener);
     }
-    
-    public void addClassificationListener (ActionListener listener) {
+
+    public void addClassificationListener(ActionListener listener) {
         mitClassification.addActionListener(listener);
     }
-    
-    public void addClusteringListener (ActionListener listener) {
+
+    public void addClusteringListener(ActionListener listener) {
         mitClustering.addActionListener(listener);
     }
-    
-    
-    public void addVisualizeListener (ActionListener listener) {
+
+    public void addVisualizeListener(ActionListener listener) {
         mitVisualize.addActionListener(listener);
     }
-    
-   
-    
-    public void addNewListener (ActionListener listener) {
+
+    public void addNewListener(ActionListener listener) {
         mitNew.addActionListener(listener);
     }
-    
-    public void addDescriptiveStatisticListener (ActionListener listener) {
+
+    public void addDescriptiveStatisticListener(ActionListener listener) {
         mitDescriptiveStatistic.addActionListener(listener);
     }
-    
-    public void addOneSampleTTest (ActionListener listener) {
+
+    public void addOneSampleTTest(ActionListener listener) {
         mitOneSampleTtest.addActionListener(listener);
     }
-    
-    public void addTwoSamplesTTest (ActionListener listener) {
+
+    public void addTwoSamplesTTest(ActionListener listener) {
         mitTwoSamplesTtest.addActionListener(listener);
     }
-    
-    public void addKolmogorovSmirnov (ActionListener listener) {
+
+    public void addKolmogorovSmirnov(ActionListener listener) {
         mitKolmogorovSmirnov.addActionListener(listener);
     }
 
@@ -232,10 +241,7 @@ public class MainGUI extends javax.swing.JFrame {
     public JPanel getPnlCenter() {
         return pnlCenter;
     }
-         
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
