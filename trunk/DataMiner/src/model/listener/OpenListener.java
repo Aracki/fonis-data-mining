@@ -38,7 +38,8 @@ public class OpenListener implements ActionListener {
             Utils utils = new Utils();
             ConvertToInstances convert = new ConvertToInstances();
             File chosenFile = chooser.getSelectedFile();
-
+            String filename = chosenFile.getName();
+            MainGUI.getInstance().setTitle("Data Miner - " + filename);
             String extension = utils.getExtension(chosenFile);
 
             if (extension.equals("xlsx")) {
@@ -51,7 +52,7 @@ public class OpenListener implements ActionListener {
             } else if (extension.equals("csv")) {
                 instances = convert.convertCSVToInstances(chosenFile);
             }
-            
+
             Data.getInstance().setInstances(instances);
 
             //proverava da li je klasifikovano i podesava to u klasi Data
@@ -64,7 +65,6 @@ public class OpenListener implements ActionListener {
                 Data.getInstance().setClassified(false);
             }
 
-            
             LoadedInstancesCentralPanel panel = new LoadedInstancesCentralPanel();
             panel.setSize(MainGUI.getInstance().getPnlCenter().getSize());
             Data.getInstance().setLoadedInstancesCentralPanel(panel);
@@ -72,7 +72,7 @@ public class OpenListener implements ActionListener {
             MainGUI.getInstance().getPnlCenter().add(panel);
             MainGUI.getInstance().validate();
             MainGUI.getInstance().repaint();
-            
+
             panel.setVisible(true);
         }
 
